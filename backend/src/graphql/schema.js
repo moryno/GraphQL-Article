@@ -22,6 +22,7 @@ const graphqlSchema = buildSchema(`
     type AuthData{
         userId: String!
         token: String!
+        name: String!
     }
 
     input UserInputData {

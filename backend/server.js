@@ -1,6 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
+
 import { graphqlHTTP } from "express-graphql";
 import graphqlSchema from "./src/graphql/schema.js";
 import graphqlResolver from "./src/graphql/resolvers.js";
@@ -18,6 +20,7 @@ const connect = async () => {
 };
 
 app.use(express.json());
+app.use(cors());
 app.use(
   "/graphql",
   graphqlHTTP({

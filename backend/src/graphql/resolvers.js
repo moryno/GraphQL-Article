@@ -27,7 +27,10 @@ export default {
         ...newUser._doc,
         _id: newUser._id.toString(),
       };
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+      throw new Error("Registration failed. Please try again.");
+    }
   },
   login: async function ({ email, password }, req) {
     const user = await User.findOne({ email });
@@ -57,6 +60,7 @@ export default {
     return {
       userId: user._id.toString(),
       token,
+      name: user.name,
     };
   },
   createPost: async function (
@@ -89,7 +93,10 @@ export default {
         createdAt: createdPost.createdAt.toISOString(),
         updatedAt: createdPost.updatedAt.toISOString(),
       };
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+      throw new Error("Creating post failed. Please try again.");
+    }
   },
   posts: async function (args, req) {
     try {
